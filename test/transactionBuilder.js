@@ -59,11 +59,33 @@ describe('transactionBuilder', () => {
     );
   });
 
-  it('build unfreeze', async () => {
+  it('build unfreeze (bandwidth default)', async () => {
     const tx = buildUnfreezeBalance('TKcrAJN3tgLshGqp7aTDTJLabdWqZSKFMx');
     assert.strict.equal(
       toRawHex(tx),
       '5A53080C124F0A34747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E556E667265657A6542616C616E6365436F6E747261637412170A154169D78AAC0544126C5199CFF1E1BDC94B15FE9E00',
+    );
+  });
+
+  it('build unfreeze (bandwidth explicit)', async () => {
+    const tx = buildUnfreezeBalance(
+      'TKcrAJN3tgLshGqp7aTDTJLabdWqZSKFMx',
+      'BANDWIDTH',
+    );
+    assert.strict.equal(
+      toRawHex(tx),
+      '5A53080C124F0A34747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E556E667265657A6542616C616E6365436F6E747261637412170A154169D78AAC0544126C5199CFF1E1BDC94B15FE9E00',
+    );
+  });
+
+  it('build unfreeze (energy explicit)', async () => {
+    const tx = buildUnfreezeBalance(
+      'TKcrAJN3tgLshGqp7aTDTJLabdWqZSKFMx',
+      'ENERGY',
+    );
+    assert.strict.equal(
+      toRawHex(tx),
+      '5A55080C12510A34747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E556E667265657A6542616C616E6365436F6E747261637412190A154169D78AAC0544126C5199CFF1E1BDC94B15FE9E005001',
     );
   });
 

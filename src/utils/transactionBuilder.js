@@ -204,11 +204,13 @@ function buildFreezeBalance(address, amount, duration, resource = 'BANDWIDTH') {
  * Unfreeze balance
  *
  * @param address From which address to freeze
+ * @param resource One of ['BANDWIDTH', 'ENERGY']
  */
-function buildUnfreezeBalance(address) {
+function buildUnfreezeBalance(address, resource = 'BANDWIDTH') {
   let contract = new UnfreezeBalanceContract();
 
   contract.setOwnerAddress(Uint8Array.from(decode58Check(address)));
+  contract.setResource(ResourceCode[resource]);
 
   return buildTransferContract(
     contract,
